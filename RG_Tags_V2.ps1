@@ -8,7 +8,7 @@ Import-Csv .\source.csv | ForEach-Object {
   $resource_group = $_.rg
   $tag = $_.tag
   $tags = @{"Application"=$tag}
-  Select-AzureSubscription -Current -SubscriptionName $subscription_Name
+  Select-AzSubscription -SubscriptionName $subscription_Name
   resource = Get-AzResourceGroup -Name $resource_group
-  Update-AzTag -ResourceId $resource.id -Tag $tags -Operation Merge
+  Update-AzTag -ResourceId $resource.ResourceId -Tag $tags -Operation Merge
  }
